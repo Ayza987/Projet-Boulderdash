@@ -12,7 +12,7 @@ import entity.element.motionless.MotionlessElementFactory;
 import java.util.Random;
 
 /**
- * The Class Controller.
+ * The Class Controller by NDIENTIENG LINE SONIA
  */
 public final class Controller implements IController {
     /**
