@@ -7,13 +7,19 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Class Main.
+ *
+ * @author Denise
+ */
+
 public class DBConnection {
-    private static final String PASSWORD = "Syrste@2005";
+    private static final String PASSWORD = "Or!gam!554";
     private static final String LOGIN = "root";
     private static final String URL = "jdbc:mysql://localhost/javaproject";
     private static Connection connection;
     private Statement statement;
-    private String filename = "niveau.txt";
+    private String filename = "map.txt";
     public DBConnection() {
         this.connection = null;
         this.statement = null;

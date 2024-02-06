@@ -7,6 +7,12 @@ import entity.element.mobile.Player;
 
 import java.io.IOException;
 
+/**
+ * The Class Main.
+ *
+ * @author Denise
+ */
+
 public class Model implements IModel {
     /** The map. */
     private IMap map;

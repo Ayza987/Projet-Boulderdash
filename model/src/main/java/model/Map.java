@@ -16,8 +16,7 @@ import java.util.Observable;
 /**
  * <h1>The Map Class.</h1>
  *
- * @author Laetitia
- * @version 0.1
+ * @author Denise
  */
 
 class Map extends Observable implements IMap {
@@ -43,6 +42,7 @@ class Map extends Observable implements IMap {
      */
     Map(final String fileName) throws IOException {
         super();
+        this.onTheMap = new IElement[2][2];
         this.loadFile(fileName);
     }
 
@@ -57,22 +57,37 @@ class Map extends Observable implements IMap {
         String line;
 
         try {
+            // Existing code...
+
+            // Read and set the width from the file
             line = buffer.readLine();
-            this.setWidth(Integer.parseInt(line));
+            this.setWidth(Integer.parseInt(line.trim()));
+
+            // Read and set the height from the file
             line = buffer.readLine();
-            this.setHeight(Integer.parseInt(line));
-        } catch (Exception | Error e) {
+            this.setHeight(Integer.parseInt(line.trim()));
+
+            // Rest of the code...
+        } catch (NumberFormatException e) {
+            // Handle NumberFormatException by marking isCorrect as false
+            isCorrect = false;
+        } catch (IOException e) {
+            // Handle IOException by marking isCorrect as false
             isCorrect = false;
         }
 
+
         if (isCorrect) {
+            // Initialize the onTheMap array with the specified width and height
             this.onTheMap = new IElement[this.getWidth()][this.getHeight()];
 
             int y = 0;
             line = buffer.readLine();
             while (line != null) {
+                // Check if the line length matches the specified width
                 if (line.toCharArray().length == this.width) {
                     for (int x = 0; x < line.toCharArray().length; x++) {
+                        // Populate the onTheMap array based on characters in the line
                         if (line.toCharArray()[x] == 'R' || line.toCharArray()[x] == 'B' || line.toCharArray()[x] == 'D') {
                             this.setOnTheMapXY(MobileElementFactory.getFromFileSymbol(line.toCharArray()[x]), x, y);
                         } else {
@@ -80,6 +95,8 @@ class Map extends Observable implements IMap {
                         }
                     }
                 } else {
+                    // Handle invalid line length by printing a message and marking isCorrect as false
+                    System.out.println("Invalid line length: " + line);
                     this.isCorrect = false;
                 }
                 line = buffer.readLine();
@@ -158,7 +175,7 @@ class Map extends Observable implements IMap {
      *
      * @param height the new height
      */
-    private void setHeight(final int height) {
+    void setHeight(final int height) {
         this.height = height;
     }
 
